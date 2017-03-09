@@ -6,16 +6,26 @@
       <p class="lead">
         This is the Home page for your new app, defined in <code>src/components/Home.vue</code>.
       </p>
+      <button @click="test()">test</button>
     </div>
   </div>
 </template>
 
 <script>
+import { token } from '../resources'
+
 export default {
   name: 'home',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    test: function () {
+      token.issue().then((res) => {
+        console.log(res)
+      })
     }
   }
 }
