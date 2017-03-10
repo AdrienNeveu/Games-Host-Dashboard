@@ -10,7 +10,8 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/home', component: require('./components/Home'), alias: '/' },
   { path: '/about', component: require('./components/About') },
-  { path: '/contact', component: require('./components/Contact') }
+  { path: '/contact', component: require('./components/Contact') },
+  { path: '/login', component: require('./components/Auth') }
 ]
 
 const router = new VueRouter({

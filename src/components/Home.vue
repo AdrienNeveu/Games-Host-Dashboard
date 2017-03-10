@@ -16,11 +16,6 @@ import { token } from '../resources'
 
 export default {
   name: 'home',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
   methods: {
     test: function () {
       token.issue().then((res) => {
