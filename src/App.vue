@@ -8,15 +8,15 @@
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      title: 'games-host-dashboard'
+    export default {
+        name: "app",
+        data () {
+            return {
+                title: "games-host-dashboard"
+            }
+        },
+        components: {
+            pageHeader: require("./components/BaseTemplate/Header")
+        }
     }
-  },
-  components: {
-    pageHeader: require('./components/BaseTemplate/Header')
-  }
-}
 </script>
