@@ -11,6 +11,7 @@ const store = new Vuex.Store({
     mutations: {
         setLoggedIn (state, value) {
             state.isLoggedIn = value
+            auth.setAuthorizationHeader()
         }
     },
     getters: {

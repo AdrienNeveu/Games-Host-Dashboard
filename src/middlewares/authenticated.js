@@ -5,6 +5,6 @@ module.exports = function (to, from, next) {
     if (store.getters.isLoggedIn || auth.isLoggedIn()) {
         next()
     } else {
-        next("/login")
+        next({ name: "login" })
     }
 }

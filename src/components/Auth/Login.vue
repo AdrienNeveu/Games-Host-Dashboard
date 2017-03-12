@@ -46,7 +46,7 @@
                     client_secret: config.client.secret
                 }).then(
                     (res) => {
-                        auth.setToken("auth_token", res.body.access_token)
+                        auth.setToken(res.body.access_token)
                         this.$store.commit("setLoggedIn", true)
                         this.$router.push("/")
                     }, (res) => {
@@ -81,6 +81,7 @@
     .fade-enter-active, .fade-leave-active {
         transition: opacity .5s
     }
+
     .fade-enter, .fade-leave-to {
         opacity: 0
     }

@@ -10,11 +10,6 @@
 <script>
     export default {
         name: "app",
-        data () {
-            return {
-                title: "games-host-dashboard"
-            }
-        },
         components: {
             pageHeader: require("./components/BaseTemplate/Header")
         }
