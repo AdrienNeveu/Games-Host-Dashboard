@@ -1,5 +1,10 @@
 <template>
     <form id="login-form" method="post" role="form" @submit.prevent="onSubmit">
+        <transition name="fade">
+            <div class="alert alert-danger" v-show="showError">
+                The username or password you have entered is invalid.
+            </div>
+        </transition>
         <div class="form-group">
             <input type="email" id="username" tabindex="1" class="form-control" placeholder="E-Mail address" v-model="username">
         </div>
@@ -19,16 +24,19 @@
 <script>
     import { token } from "../../resources"
     import config from "../../../env"
+    import auth from "../../helpers/auth"
 
     export default {
         data: function () {
             return {
                 username: "",
-                password: ""
+                password: "",
+                showError: false
             }
         },
         methods: {
             onSubmit: function () {
+                this.showError = false
                 token.issue({
                     grant_type: "password",
                     scope: "*",
@@ -36,9 +44,15 @@
                     password: this.password,
                     client_id: config.client.id,
                     client_secret: config.client.secret
-                }).then((res) => {
-                    console.log(res)
-                })
+                }).then(
+                    (res) => {
+                        auth.setToken("auth_token", res.body.access_token)
+                        this.$store.commit("setLoggedIn", true)
+                        this.$router.push("/")
+                    }, (res) => {
+                        this.showError = true
+                    }
+                )
             }
         }
     }
@@ -62,6 +76,13 @@
         color: #fff;
         background-color: #53A3CD;
         border-color: #53A3CD;
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s
+    }
+    .fade-enter, .fade-leave-to {
+        opacity: 0
     }
 </style>
 

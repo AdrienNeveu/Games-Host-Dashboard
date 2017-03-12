@@ -3,26 +3,18 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 import VueResource from "vue-resource"
+import store from "./store"
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
 
-const routes = [
-    {path: "/home", component: require("./components/Home"), alias: "/"},
-    {path: "/about", component: require("./components/About")},
-    {path: "/contact", component: require("./components/Contact")},
-    {path: "/login", component: require("./components/Auth")}
-]
-
-const router = new VueRouter({
-    mode: "history",
-    routes
-})
+const router = require("./routes")
 
 /* eslint-disable no-new */
 new Vue({
     el: "#app",
     router,
+    store,
     template: "<App/>",
     render: h => h(require("./App"))
 })
