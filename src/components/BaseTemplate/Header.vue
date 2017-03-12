@@ -20,17 +20,23 @@
                     <a class="nav-link" href="/login" v-show="!this.$store.getters.isLoggedIn">Login</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" @click="logout" v-show="this.$store.getters.isLoggedIn">Logout</button>
         </div>
     </nav>
 </template>
 
 <script>
+    import auth from "../../helpers/auth"
+
     export default {
-        name: "Header"
+        name: "Header",
+        methods: {
+            logout: function () {
+                auth.logOut()
+                this.$store.commit("setLoggedIn", false)
+                this.$router.push("/")
+            }
+        }
     }
 </script>
 
