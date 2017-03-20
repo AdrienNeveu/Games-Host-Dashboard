@@ -8,18 +8,25 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <div v-show="this.$store.getters.isLoggedIn">
-                    <li class="nav-item active">
-                        <router-link :to="{name: 'home'}" class="nav-link">Home</router-link>
-                    </li>
+                <div class="vertical-divider">
+                    <div v-show="this.$store.state.isLoggedIn">
+                        <li class="nav-item active">
+                            <router-link :to="{name: 'home'}" class="nav-link">Home</router-link>
+                        </li>
+                    </div>
+                    <div v-show="!this.$store.state.isLoggedIn">
+                        <li class="nav-item">
+                            <router-link :to="{name: 'login'}" class="nav-link">Login</router-link>
+                        </li>
+                    </div>
                 </div>
-                <div v-show="!this.$store.getters.isLoggedIn">
-                    <li class="nav-item">
-                        <router-link :to="{name: 'login'}" class="nav-link">Login</router-link>
+                <div v-if="this.$store.state.isLoggedIn && this.$store.state.gameServers">
+                    <li class="nav-item active">
+                        <router-link :to="{name: 'home'}" class="nav-link">Selected game: {{ this.$store.state.gameServers.find((e) => { return e.id === this.$store.state.selectedGameServer }).name }}</router-link>
                     </li>
                 </div>
             </ul>
-            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" @click="logout" v-show="this.$store.getters.isLoggedIn">Logout</button>
+            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" @click="logout" v-show="this.$store.state.isLoggedIn">Logout</button>
         </div>
     </nav>
 </template>
@@ -42,6 +49,8 @@
 </script>
 
 <style>
-
+    .vertical-divider {
+        border-right: 1px solid #E0E0E0;
+    }
 </style>
 

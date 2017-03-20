@@ -1,4 +1,7 @@
 import Vue from "vue"
+import VueResource from "vue-resource"
+
+Vue.use(VueResource)
 
 let actions = {
     issue: {method: "POST", url: "auth/token"},

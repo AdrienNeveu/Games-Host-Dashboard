@@ -6,8 +6,8 @@ import VueResource from "vue-resource"
 import store from "./store"
 import "./filters"
 
-Vue.use(VueResource)
 Vue.use(VueRouter)
+Vue.use(VueResource)
 
 const router = require("./routes")
 
